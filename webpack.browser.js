@@ -10,13 +10,13 @@ module.exports = {
     filename: "html2react.js",
   },
   module: {
-    loaders: [
+    rules: [
       {
         loader: "babel-loader",
         test: /\.js?$/,
         exclude: [path.resolve(__dirname, "node_modules")],
-        query: {
-          presets: ["es2015"],
+        options: {
+          presets: ["@babel/preset-env"],
         },
       },
     ],

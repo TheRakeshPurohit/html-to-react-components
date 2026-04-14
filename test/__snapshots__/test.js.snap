@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`HTML attribute mapping should handle SVG elements 1`] = `
+{
+  "Icon": "import React from "react";
+const Icon = () => (
+  <svg>
+    <circle cx={10} cy={10} r={5} />
+  </svg>
+);
+export default Icon;
+",
+}
+`;
+
 exports[`HTML to React components should generate ES5 React components 1`] = `
 {
   "Field": "import React from "react";
@@ -116,11 +129,8 @@ export default Nav;
 exports[`HTML to React components should generate ES5 React components as CommonJS modules 1`] = `
 {
   "Field": "const React = require("react");
-
 const Label = require("./Label");
-
 const Input = require("./Input");
-
 const Field = React.createClass({
   render() {
     return (
@@ -134,9 +144,7 @@ const Field = React.createClass({
 module.exports = Field;
 ",
   "Form": "const React = require("react");
-
 const Field = require("./Field");
-
 const Form = React.createClass({
   render() {
     return (
@@ -149,11 +157,8 @@ const Form = React.createClass({
 module.exports = Form;
 ",
   "Header": "const React = require("react");
-
 const Heading = require("./Heading");
-
 const Nav = require("./Nav");
-
 const Header = React.createClass({
   render() {
     return (
@@ -167,7 +172,6 @@ const Header = React.createClass({
 module.exports = Header;
 ",
   "Heading": "const React = require("react");
-
 const Heading = React.createClass({
   render() {
     return <h1 className="heading">Hello, world!</h1>;
@@ -176,7 +180,6 @@ const Heading = React.createClass({
 module.exports = Heading;
 ",
   "Input": "const React = require("react");
-
 const Input = React.createClass({
   render() {
     return <input type="text" id="input" />;
@@ -185,7 +188,6 @@ const Input = React.createClass({
 module.exports = Input;
 ",
   "Label": "const React = require("react");
-
 const Label = React.createClass({
   render() {
     return (
@@ -198,7 +200,6 @@ const Label = React.createClass({
 module.exports = Label;
 ",
   "ListItem": "const React = require("react");
-
 const ListItem = React.createClass({
   render() {
     return <li className="list-item" />;
@@ -207,9 +208,7 @@ const ListItem = React.createClass({
 module.exports = ListItem;
 ",
   "Main": "const React = require("react");
-
 const Form = require("./Form");
-
 const Main = React.createClass({
   render() {
     return (
@@ -222,9 +221,7 @@ const Main = React.createClass({
 module.exports = Main;
 ",
   "Nav": "const React = require("react");
-
 const ListItem = require("./ListItem");
-
 const Nav = React.createClass({
   render() {
     return (
@@ -360,7 +357,6 @@ exports[`HTML to React components should generate ES6 React components 1`] = `
   "Field": "import React from "react";
 import Label from "./Label";
 import Input from "./Input";
-
 class Field extends React.Component {
   render() {
     return (
@@ -371,12 +367,10 @@ class Field extends React.Component {
     );
   }
 }
-
 export default Field;
 ",
   "Form": "import React from "react";
 import Field from "./Field";
-
 class Form extends React.Component {
   render() {
     return (
@@ -386,13 +380,11 @@ class Form extends React.Component {
     );
   }
 }
-
 export default Form;
 ",
   "Header": "import React from "react";
 import Heading from "./Heading";
 import Nav from "./Nav";
-
 class Header extends React.Component {
   render() {
     return (
@@ -403,31 +395,25 @@ class Header extends React.Component {
     );
   }
 }
-
 export default Header;
 ",
   "Heading": "import React from "react";
-
 class Heading extends React.Component {
   render() {
     return <h1 className="heading">Hello, world!</h1>;
   }
 }
-
 export default Heading;
 ",
   "Input": "import React from "react";
-
 class Input extends React.Component {
   render() {
     return <input type="text" id="input" />;
   }
 }
-
 export default Input;
 ",
   "Label": "import React from "react";
-
 class Label extends React.Component {
   render() {
     return (
@@ -437,22 +423,18 @@ class Label extends React.Component {
     );
   }
 }
-
 export default Label;
 ",
   "ListItem": "import React from "react";
-
 class ListItem extends React.Component {
   render() {
     return <li className="list-item" />;
   }
 }
-
 export default ListItem;
 ",
   "Main": "import React from "react";
 import Form from "./Form";
-
 class Main extends React.Component {
   render() {
     return (
@@ -462,12 +444,10 @@ class Main extends React.Component {
     );
   }
 }
-
 export default Main;
 ",
   "Nav": "import React from "react";
 import ListItem from "./ListItem";
-
 class Nav extends React.Component {
   render() {
     return (
@@ -480,7 +460,6 @@ class Nav extends React.Component {
     );
   }
 }
-
 export default Nav;
 ",
 }
@@ -604,82 +583,65 @@ exports[`HTML to React components should generate functional React components 1`
   "Field": "import React from "react";
 import Label from "./Label";
 import Input from "./Input";
-
 const Field = () => (
   <div className="field">
     <Label></Label>
     <Input />
   </div>
 );
-
 export default Field;
 ",
   "Form": "import React from "react";
 import Field from "./Field";
-
 const Form = () => (
   <form action>
     <Field></Field>
   </form>
 );
-
 export default Form;
 ",
   "Header": "import React from "react";
 import Heading from "./Heading";
 import Nav from "./Nav";
-
 const Header = () => (
   <header className="header">
     <Heading></Heading>
     <Nav></Nav>
   </header>
 );
-
 export default Header;
 ",
   "Heading": "import React from "react";
-
 const Heading = () => <h1 className="heading">Hello, world!</h1>;
-
 export default Heading;
 ",
   "Input": "import React from "react";
-
 const Input = () => <input type="text" id="input" />;
-
 export default Input;
 ",
   "Label": "import React from "react";
-
 const Label = () => (
   <label htmlFor="input">
     Input<span>label</span>
   </label>
 );
-
 export default Label;
 ",
   "ListItem": "import React from "react";
-
 const ListItem = () => <li className="list-item" />;
-
 export default ListItem;
 ",
   "Main": "import React from "react";
 import Form from "./Form";
-
 const Main = () => (
   <main className="main">
     <Form></Form>
   </main>
 );
-
 export default Main;
 ",
   "Nav": "import React from "react";
 import ListItem from "./ListItem";
-
 const Nav = () => (
   <nav className="nav">
     <ul className="list">
@@ -688,7 +650,6 @@ const Nav = () => (
     </ul>
   </nav>
 );
-
 export default Nav;
 ",
 }
@@ -697,7 +658,6 @@ export default Nav;
 exports[`HTML to React components should transform inline CSS properly 1`] = `
 {
   "Box": "import React from "react";
-
 const Box = () => (
   <div
     style={{
@@ -709,7 +669,6 @@ const Box = () => (
     Box
   </div>
 );
-
 export default Box;
 ",
 }
@@ -718,10 +677,147 @@ export default Box;
 exports[`HTML to React components should transform public HTML attrbiutes into React props 1`] = `
 {
   "Button": "import React from "react";
-
-const Button = ({ onclick }) => <button onclick={onclick}>press</button>;
-
+interface ButtonProps {
+  onclick: string;
+}
+const Button = ({ onclick }: ButtonProps) => (
+  <button onclick={onclick}>press</button>
+);
 export default Button;
+",
+}
+`;
+
+exports[`Nested components with public props should pass public props through parent-child nesting 1`] = `
+{
+  "Child": "import React from "react";
+interface ChildProps {
+  type: string;
+}
+const Child = ({ type }: ChildProps) => <input type={type} />;
+export default Child;
+",
+  "Parent": "import React from "react";
+import Child from "./Child";
+const Parent = () => (
+  <div>
+    <Child type="text" />
+  </div>
+);
+export default Parent;
+",
+}
+`;
+
+exports[`Nested components with public props should pass public props through parent-child nesting with class components 1`] = `
+{
+  "Child": "import React from "react";
+interface ChildProps {
+  type: string;
+}
+class Child extends React.Component<ChildProps> {
+  render() {
+    const { type } = this.props;
+    return <input type={type} />;
+  }
+}
+export default Child;
+",
+  "Parent": "import React from "react";
+import Child from "./Child";
+class Parent extends React.Component {
+  render() {
+    return (
+      <div>
+        <Child type="text" />
+      </div>
+    );
+  }
+}
+export default Parent;
+",
+}
+`;
+
+exports[`TypeScript output should generate TypeScript interface for class components with public props 1`] = `
+{
+  "Input": "import React from "react";
+interface InputProps {
+  type: string;
+  placeholder: string;
+}
+class Input extends React.Component<InputProps> {
+  render() {
+    const { type, placeholder } = this.props;
+    return <input type={type} placeholder={placeholder} />;
+  }
+}
+export default Input;
+",
+}
+`;
+
+exports[`TypeScript output should generate TypeScript interface for functional components with public props 1`] = `
+{
+  "Input": "import React from "react";
+interface InputProps {
+  type: string;
+  placeholder: string;
+}
+const Input = ({ type, placeholder }: InputProps) => (
+  <input type={type} placeholder={placeholder} />
+);
+export default Input;
+",
+}
+`;
+
+exports[`TypeScript output should generate TypeScript interface in CommonJS modules 1`] = `
+{
+  "Button": "const React = require("react");
+interface ButtonProps {
+  onclick: string;
+}
+const Button = ({ onclick }: ButtonProps) => (
+  <button onclick={onclick}>press</button>
+);
+module.exports = Button;
+",
+}
+`;
+
+exports[`TypeScript output should generate plain JavaScript when typescript is false for class 1`] = `
+{
+  "Button": "import React from "react";
+class Button extends React.Component {
+  render() {
+    const { onclick } = this.props;
+    return <button onclick={onclick}>press</button>;
+  }
+}
+export default Button;
+",
+}
+`;
+
+exports[`TypeScript output should generate plain JavaScript when typescript is false for functional 1`] = `
+{
+  "Button": "import React from "react";
+const Button = ({ onclick }) => <button onclick={onclick}>press</button>;
+export default Button;
+",
+}
+`;
+
+exports[`TypeScript output should not generate TypeScript interface for es5 components 1`] = `
+{
+  "Input": "import React from "react";
+const Input = React.createClass({
+  render() {
+    return <input type={type} />;
+  },
+});
+export default Input;
 ",
 }
 `;
