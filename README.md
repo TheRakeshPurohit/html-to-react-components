@@ -1,8 +1,24 @@
 <img src="logo.png" width="260" alt="Logo" />
 
+<a href="https://travis-ci.org/roman01la/html-to-react-components">
+  <img src="https://img.shields.io/travis/roman01la/html-to-react-components.svg?style=flat-square" />
+</a>
+<a href="https://www.npmjs.com/package/html-to-react-components">
+  <img src="https://img.shields.io/npm/v/html-to-react-components.svg?style=flat-square" />
+</a>
+<a href="https://coveralls.io/github/roman01la/html-to-react-components">
+  <img src="https://img.shields.io/coveralls/roman01la/html-to-react-components.svg?style=flat-square" />
+</a>
+
+_If you like what I do, consider supporting my work via donation_
+
+[![](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/romanliutikov)
+
 Extract annotated portions of HTML into React components as separate modules. The structure of HTML is preserved by importing child components and replacing appropriate pieces of HTML with them. As a result you get an entire components tree ready to be rendered.
 
 **Output is TypeScript by default** — components with `public:` props get typed interfaces and annotated parameters.
+
+Try in [online REPL](http://roman01la.github.io/html-to-react-components/repl/)
 
 ![usage example animation](sample.gif)
 
@@ -15,6 +31,7 @@ Extract annotated portions of HTML into React components as separate modules. Th
 - [Options](#options)
 - [Node.js API](#nodejs-api)
 - [Building for browser](#building-for-browser)
+- [Resources](#resources)
 - [Ecosystem](#ecosystem)
 - [Contributing](#contributing)
 - [License](#License)
@@ -209,6 +226,14 @@ Example of defining a var in Webpack config:
     }),
   ],
 ```
+
+## Resources
+
+A quick [video demo](https://www.youtube.com/embed/Cd8cNLfGcVo) on converting a simple HTML page into React components and rendering them into the same looking UI.
+
+Annotating HTML in the editor is not the best experience, because you cannot see rendered UI itself. It's possible to annotate HTML using DevTools. Be aware that you'll have to spend time on copying and pasting markup from DevTools into files which will be processed.
+
+![usage example with DevTools animation](https://giant.gfycat.com/ShockingDefiantBobcat.gif)
 
 ## Ecosystem
 
