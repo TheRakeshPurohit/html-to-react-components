@@ -1,22 +1,8 @@
 <img src="logo.png" width="260" alt="Logo" />
 
-<a href="https://travis-ci.org/roman01la/html-to-react-components">
-  <img src="https://img.shields.io/travis/roman01la/html-to-react-components.svg?style=flat-square" />
-</a>
-<a href="https://www.npmjs.com/package/html-to-react-components">
-  <img src="https://img.shields.io/npm/v/html-to-react-components.svg?style=flat-square" />
-</a>
-<a href="https://coveralls.io/github/roman01la/html-to-react-components">
-  <img src="https://img.shields.io/coveralls/roman01la/html-to-react-components.svg?style=flat-square" />
-</a>
-
-_If you like what I do, consider supporting my work via donation_
-
-[![](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/romanliutikov)
-
 Extract annotated portions of HTML into React components as separate modules. The structure of HTML is preserved by importing child components and replacing appropriate pieces of HTML with them. As a result you get an entire components tree ready to be rendered.
 
-Try in [online REPL](http://roman01la.github.io/html-to-react-components/repl/)
+**Output is TypeScript by default** — components with `public:` props get typed interfaces and annotated parameters.
 
 ![usage example animation](sample.gif)
 
@@ -29,7 +15,6 @@ Try in [online REPL](http://roman01la.github.io/html-to-react-components/repl/)
 - [Options](#options)
 - [Node.js API](#nodejs-api)
 - [Building for browser](#building-for-browser)
-- [Resources](#resources)
 - [Ecosystem](#ecosystem)
 - [Contributing](#contributing)
 - [License](#License)
@@ -46,6 +31,8 @@ Imagine you just got a pile of HTML from your designers. The first thing you wil
 $ npm i -g html-to-react-components
 ```
 
+Requires Node.js 18 or later.
+
 ## Usage
 
 HTML element with `data-component` attribute will be converted into separate React components. The value of the attribute is the name of the React component.
@@ -56,19 +43,17 @@ Additionally specify which HTML attributes should be exposed as React props usin
 <input public:type="text" id="input" data-component="Input" />
 ```
 
-```js
+By default, components with `public:` props are generated with TypeScript interfaces:
+
+```tsx
 // at usage place
 <Input type="text" />;
-// ----^^^^^^^^^^^
 
 // in component's module
-class Input extends React.Component {
-  render() {
-    const { type } = this.props; // <----
-    return <input type={type} id="input" />;
-    // -----------^^^^^^^^^^^
-  }
+interface InputProps {
+  type: string;
 }
+const Input = ({ type }: InputProps) => <input type={type} id="input" />;
 ```
 
 See and run `test.js` file for usage example and output.
@@ -106,6 +91,12 @@ Values:
 - `es` (EcmaScript module, default)
 - `cjs` (CommonJS)
 
+#### typescript, --typescript, -t
+
+Generate TypeScript output with typed prop interfaces.
+
+Default is `true`. Use `--no-typescript` to generate plain JavaScript.
+
 #### moduleFileNameDelimiter, --delimiter, -d
 
 Delimiter character to be used in modules filename.
@@ -129,14 +120,16 @@ Default is `components` directory in the current directory.
 
 Output files extension.
 
-Default value is `js`.
+Default value is `tsx` (or `js` when typescript is disabled).
 
 ## Node.js API
+
+The API is async and returns a Promise.
 
 ```js
 const extractReactComponents = require("html-to-react-components");
 
-extractReactComponents(
+const components = await extractReactComponents(
   `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,16 +156,44 @@ extractReactComponents(
 `,
   {
     componentType: "functional",
-    moduleType: false,
+    moduleType: "es",
   }
 );
 
 /*
-{ Header: 'const Header = () => <header className="header">\n\n    <Heading></Heading>\n\n    <Nav></Nav>\n\n  </header>;',
-  Heading: 'const Heading = () => <h1 className="heading">Hello, world!</h1>;',
-  Nav: 'const Nav = () => <nav className="nav">\n      <ul className="list">\n        <ListItem></ListItem>\n        <ListItem></ListItem>\n      </ul>\n    </nav>;',
-  ListItem: 'const ListItem = () => <li className="list-item">#2</li>;' }
+{
+  Header: 'import React from "react";\nimport Heading from "./Heading";\nimport Nav from "./Nav";\nconst Header = () => (\n  <header className="header">\n    <Heading></Heading>\n    <Nav></Nav>\n  </header>\n);\nexport default Header;\n',
+  Heading: '...',
+  Nav: '...',
+  ListItem: '...',
+}
 */
+```
+
+### Options
+
+```js
+await extractReactComponents(html, {
+  componentType: "functional", // "functional", "class", or "es5"
+  moduleType: "es",            // "es" or "cjs"
+  typescript: true,            // true (default) or false
+  output: {
+    path: "components",        // output directory
+    fileExtension: "tsx",      // file extension
+  },
+});
+```
+
+Set `typescript: false` to generate plain JavaScript without type annotations:
+
+```js
+await extractReactComponents(html, {
+  componentType: "functional",
+  typescript: false,
+  output: {
+    fileExtension: "js",
+  },
+});
 ```
 
 ## Building for browser
@@ -188,14 +209,6 @@ Example of defining a var in Webpack config:
     }),
   ],
 ```
-
-## Resources
-
-A quick [video demo](https://www.youtube.com/embed/Cd8cNLfGcVo) on converting a simple HTML page into React components and rendering them into the same looking UI.
-
-Annotating HTML in the editor is not the best experience, because you cannot see rendered UI itself. It's possible to annotate HTML using DevTools. Be aware that you'll have to spend time on copying and pasting markup from DevTools into files which will be processed.
-
-![usage example with DevTools animation](https://giant.gfycat.com/ShockingDefiantBobcat.gif)
 
 ## Ecosystem
 
